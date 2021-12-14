@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app import models
+from app import models, auth
 from .database import engine
 from .routers import post, user
 
@@ -18,6 +18,7 @@ app = FastAPI(
 
 app.include_router(post.router)
 app.include_router(user.router)
+app.include_router(auth.router)
 
 
 @app.get('/')
