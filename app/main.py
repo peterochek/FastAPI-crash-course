@@ -5,7 +5,7 @@ from app import models, auth
 from .database import engine
 from .routers import post, user, vote
 
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)  (alembic)
 
 app = FastAPI(
     title='App',
