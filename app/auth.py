@@ -21,8 +21,10 @@ def create_user(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Ses
                             detail=f'Incorrect Credentials')
 
     if not verify(user_credentials.password, user.password):
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
-                            detail=f'Incorrect Credentials')
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail='Incorrect Credentials',
+        )
 
     access_token = oauth2.create_access_token(data={'user_id': user.id})
 

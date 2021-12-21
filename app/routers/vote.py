@@ -33,8 +33,11 @@ def vote(vote: schemas.Vote, db: Session = Depends(get_db),
         return {'message': 'successfully added post'}
     else:
         if not found_vote:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                                detail=f'Vote does not exist')
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail='Vote does not exist',
+            )
+
         vote_query.delete()
         db.commit()
 

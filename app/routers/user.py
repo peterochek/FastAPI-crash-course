@@ -1,4 +1,4 @@
-from typing import List
+import time
 
 from fastapi import status, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
@@ -25,18 +25,21 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return new_user
 
 
-@router.get('/', response_model=List[schemas.UserOut])
-def get_post(db: Session = Depends(get_db)):
+@router.get('/', response_model=list[schemas.UserOut])
+def get_users(db: Session = Depends(get_db)):
     users = db.query(models.User).all()
 
     if not users:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f'users were not found')
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='users were not found',
+        )
+
     return users
 
 
 @router.get('/{id_}', response_model=schemas.UserOut)
-def get_post(id_: int, db: Session = Depends(get_db)):
+def get_user(id_: int, db: Session = Depends(get_db)):
     user = db.query(models.User).filter(models.User.id == id_).first()
 
     if not user:
