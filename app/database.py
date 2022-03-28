@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 from .config import settings
 
-secret_connection = f'postgresql://{settings.db_username}:{settings.db_password}@{settings.db_hostname}:{settings.db_port}/{settings.db_name}'
+secret_connection = f"postgresql://{settings.db_username}:{settings.db_password}@{settings.db_hostname}:{settings.db_port}/{settings.db_name}"
 
 SQLALCHEMY_DATABASE_URL = secret_connection
 

@@ -11,8 +11,8 @@ from app.models import Base
 # access to the values within the .ini file in use.
 config = context.config
 config.set_main_option(
-    'sqlalchemy.url',
-    f'postgresql://{settings.db_username}:{settings.db_password}@{settings.db_hostname}:{settings.db_port}/{settings.db_name}'
+    "sqlalchemy.url",
+    f"postgresql://{settings.db_username}:{settings.db_password}@{settings.db_hostname}:{settings.db_port}/{settings.db_name}",
 )
 
 # Interpret the config file for Python logging.
@@ -70,9 +70,7 @@ def run_migrations_online():
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()

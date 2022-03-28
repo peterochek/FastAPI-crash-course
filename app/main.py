@@ -8,16 +8,16 @@ from .routers import post, user, vote
 # models.Base.metadata.create_all(bind=engine)  (alembic)
 
 app = FastAPI(
-    title='App',
-    version='0.0.1',
+    title="App",
+    version="0.0.1",
     contact={
-        'name': 'peterochek',
-        'url': 'https://github.com/peterochek',
-        'email': 'peterkkor@gmail.com',
-    }
+        "name": "peterochek",
+        "url": "https://github.com/peterochek",
+        "email": "peterkkor@gmail.com",
+    },
 )
 
-origins = ['*']
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -34,6 +34,6 @@ app.include_router(auth.router)
 app.include_router(vote.router)
 
 
-@app.get('/')
+@app.get("/")
 def root():
-    return {'message': 'root'}
+    return {"message": engine.table_names()}

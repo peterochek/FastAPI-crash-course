@@ -4,10 +4,10 @@ WORKDIR /usr/src
 
 COPY requirements.txt .
 
-RUN python3 -m venv /usr/src/venv
+RUN python -m venv venv
 
-RUN /usr/src/venv/bin/pip install pip -U
-RUN /usr/src/venv/bin/pip install --no-cache-dir -r requirements.txt
+RUN venv/bin/pip install pip -U
+RUN venv/bin/pip install --no-cache-dir -r requirements.txt
 
 RUN apt-get update && apt-get -y install curl nano
 
